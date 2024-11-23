@@ -1,0 +1,92 @@
+<div class="container">
+    <tabs>
+        <tab-content class="tabContent">
+            <div class="Page0" id="Page0">
+                <div class="rtsp">
+                    <text>实时传送带监控</text>
+<!--                    <div class="canvas">-->
+<!--&lt;!&ndash;                        <web src="https://www.baidu.com/"></web>&ndash;&gt;-->
+<!--                    </div>-->
+<!--                    <video src="http://10.12.168.10:5001/hls/camera.m3u8" autoplay="true" controls="true" @error="onError"></video>-->
+                    <image src="{{ imageUrl0 }}"></image>
+                </div>
+                <div class="historyImage">
+                    <text>检测结果</text>
+                    <div class="lastImage">
+                        <image src="{{ lastImage }}"></image>
+                        <progress id="loadingProgress" type="horizontal" percent="{{percent}}" style="display: {{ isLoading ? 'block' : 'none' }}"></progress>
+                    </div>
+                    <dialog class="dialogClass" dragable="true" id="dialogId">
+                        <div class="content">
+                            <text class="newPcb">检测到新的异常pcb板!</text>
+                            <text>当前异常数：{{ dialogShow }}</text>
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+            <div class="Page1" id="Page1">
+                <div id="Page1Title">
+                    <text>请拍摄电路板</text>
+                </div>
+                <div class="cameraContainer">
+                    <camera id="camera" flash="on" deviceposition="back" onerror="cameraError"></camera>
+                </div>
+                <div class="Page1Button">
+                    <button class="shoot" onclick="takePhoto()"> 拍摄 </button>
+                </div>
+            </div>
+            <div class="Page2" id="Page2">
+                <div id="Page2Title">
+                    <div id="Page2TitleText">
+                        <text >检测时间</text>
+                        <image src="/common/images/ic_public_input_search.svg" class="input-search"></image>
+                        <picker
+                            type="date"
+                            value="{{ dateValue }}"
+                            id="Page2Input"
+                            start="2000-9-4"
+                            end="2100-9-4"
+                            @change="dateOnChange"
+                        >
+                        </picker>
+                    </div>
+                    <button id="Page2Button" onclick="getAllHistories(e,1)">查询</button>
+                </div>
+                <divider class="divider"></divider>
+                <div id="Page2Content">
+                    <list id="list" divider="true">
+                        <list-item class="listItem" for="{{ historyList }}" onclick="imageDetail({{ $item.imageName }})">
+                            <div class="ld">
+                                <div>
+                                    <text class="listItemIndex">{{ $item.number }}</text>
+                                    <text class="imageName">{{ $item.imageName }}</text>
+                                </div>
+                                <div class="right">
+                                    <text class="errorNum">{{ $item.errorNum }}</text>
+                                    <image class="right-arrow" src="/common/images/ic_public_arrow_right.svg"></image>
+                                </div>
+                            </div>
+                        </list-item>
+                    </list>
+                </div>
+            </div>
+        </tab-content>
+        <tab-bar class="tabBar">
+            <div class="tabButton" id="PageButton0" onclick="switchPages('Page0')">
+                <image src="/common/images/Page0_Black.png" class="icon {{ pages.Page0.icon[0] }}"></image>
+                <image src="/common/images/Page0_Blue.png" class="icon {{ pages.Page0.icon[1] }}"></image>
+                <text class="bottomTex {{ pages.Page0.color }}" ref="sy">首页</text>
+            </div>
+            <div class="tabButton" id="PageButton1" onclick="switchPages('Page1')">
+                <image src="/common/images/Page1_Black.png" class="icon {{ pages.Page1.icon[0] }}"></image>
+                <image src="/common/images/Page1_Blue.png" class="icon {{ pages.Page1.icon[1] }}"></image>
+                <text class="bottomTex {{ pages.Page1.color }}">异常检测</text>
+            </div>
+            <div class="tabButton" id="PageButton2" onclick="switchPages('Page2')">
+                <image src="/common/images/Page2_Black.png" class="icon {{ pages.Page2.icon[0] }}"></image>
+                <image src="/common/images/Page2_Blue.png" class="icon {{ pages.Page2.icon[1] }}"></image>
+                <text class="bottomTex {{ pages.Page2.color }}">历史记录</text>
+            </div>
+        </tab-bar>
+    </tabs>
+</div>

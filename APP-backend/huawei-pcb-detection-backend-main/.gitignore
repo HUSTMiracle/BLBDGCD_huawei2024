@@ -1,0 +1,7 @@
+*.bmp
+*.png
+.env
+*.onnx
+__pycache__
+Dockerfile
+node_modules

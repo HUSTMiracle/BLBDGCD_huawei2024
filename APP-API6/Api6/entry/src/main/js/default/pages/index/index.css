@@ -1,0 +1,278 @@
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(241, 243, 245);
+}
+
+.tabButton {
+    width:25%;
+    flex-direction: column; /* 设置为垂直方向排列 */
+    align-items: center;    /* 图标和文字水平居中 */
+    justify-content: center;
+    padding: 0px;
+    border-radius: 8px;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
+}
+
+.tabBar {
+    height:10%;
+    display: flex;
+    justify-content: space-between;  /* 子元素均匀分布，左右有间距 */
+    align-items: center;  /* 子元素垂直居中 */
+}
+
+.bottomTex {
+    font-size: 15px;
+}
+
+/* 底部按钮选择动画 */
+.SelectedColor{
+    color:#012399;
+}
+
+.hidden{
+    display: none;
+}
+#Page0 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 10px;
+}
+.rtsp {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.rtsp text {
+    font-size: 25px;
+}
+
+.rtsp image {
+    padding: 5px;
+}
+
+.historyImage {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+}
+/* lastImage 历史记录 */
+.historyImage text {
+    font-size: 25px;
+}
+.historyImage .lastImage {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#loadingProgress {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+}
+/* Page1 Camera */
+#Page1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#Page1Title{
+    width:100%;
+    display: flex;
+    align-items: center;    /* 图标和文字水平居中 */
+    justify-content: center;
+}
+
+#Page1Title text{
+    font-size: 25px;
+}
+
+.cameraContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    background-color: transparent;
+}
+
+#camera{
+    height:100%;
+    width:100%;
+}
+
+.shoot{
+    width:100px;
+    height: 50px;
+}
+
+/* Page2 */
+#Page2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#Page2Title {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#Page2TitleText {
+    margin-left: 6px;
+    font-size: 18px;
+    position: relative;
+}
+
+.input-search {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 25%;
+    left: 32.5%;
+    z-index: 5;
+}
+#Page2Input{
+    margin: 10px;
+    width: 60%;
+    font-size: 15px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+#Page2Button{
+    width: 20%;
+    padding: 2px;
+    margin-right: 6px;
+}
+.divider {
+    stroke-width: 2px;
+    color: whitesmoke;
+}
+.listItem{
+    border-bottom: 1px solid #DEDEDE;
+    height: 70px;
+    margin: 0px 10px 5px 10px;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+.listItem .ld{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 25px;
+    width:100%;
+    height:100%;
+}
+
+.ld .listItemIndex{
+    font-size: 23px;
+}
+
+.ld .imageName{
+    font-size: 22px;
+    margin-left: 20px;
+}
+.ld .right {
+    display: flex;
+    justify-content: center;
+}
+.ld .right .right-arrow{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+
+.ld .errorNum{
+    font-size: 23px;
+}
+
+
+.dialogClass{
+    position: absolute;
+    bottom: 0%;
+    width: 80%;
+    height: 250px;
+}
+.content{
+    width: 100%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e8ebec;
+    border-radius: 20px;
+}
+
+.content .newPcb {
+    margin-bottom: 20px;
+}
+@keyframes buttonSelectedColor{
+    from {
+        color: red;
+    }
+    to {
+        color: black;
+    }
+}
+
+@media screen and (device-type: tablet) and (orientation: landscape) {
+    .title {
+        font-size: 100px;
+    }
+}
+@media screen and (device-type: wearable) {
+    .title {
+        font-size: 28px;
+        color: #FFFFFF;
+    }
+}
+@media screen and (device-type: tv) {
+    .container {
+        background-image: url("/common/images/Wallpaper.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .title {
+        font-size: 100px;
+        color: #FFFFFF;
+    }
+}
+@media screen and (device-type: phone) and (orientation: landscape) {
+    .title {
+        font-size: 60px;
+    }
+}

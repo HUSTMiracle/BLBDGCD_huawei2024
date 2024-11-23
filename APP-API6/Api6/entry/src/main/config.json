@@ -1,0 +1,102 @@
+{
+	"app":{
+		"vendor":"example",
+		"bundleName":"com.example.api6",
+		"version":{
+			"code":1000000,
+			"name":"1.0.0"
+		}
+	},
+	"deviceConfig":{
+		"default": {
+			"network": {
+				"cleartextTraffic": true
+			}
+		}
+	},
+	"module":{
+		"mainAbility":"com.example.api6.MainAbility",
+		"metaData": {
+			"customizeData":[
+				{
+					"name": "hwc-theme",
+					"value": "androidhwext:style/Theme.Emui.Light.NoTitleBar"
+				}
+			]
+		},
+		"reqPermissions": [
+			{
+				"name": "ohos.permission.CAMERA"
+			},
+			{
+				"name": "ohos.permission.READ_USER_STORAGE"
+			},
+			{
+				"name": "ohos.permission.WRITE_USER_STORAGE"
+			},
+			{
+				"name": "ohos.permission.INTERNET"
+			},
+			{
+				"name": "ohos.permission.GET_NETWORK_INFO"
+			},
+			{
+				"name": "ohos.permission.SET_NETWORK_INFO"
+			},
+			{
+				"name": "ohos.permission.READ_MEDIA"
+			},
+			{
+				"name": "ohos.permission.GET_WIFI_INFO"
+			}
+		],
+		"deviceType":[
+			"phone",
+			"tablet",
+			"tv",
+			"wearable"
+		],
+		"abilities":[
+			{
+				"skills":[
+					{
+						"entities":[
+							"entity.system.home"
+						],
+						"actions":[
+							"action.system.home"
+						]
+					}
+				],
+				"visible":true,
+				"name":"com.example.api6.MainAbility",
+				"icon":"$media:icon",
+				"description":"$string:mainability_description",
+				"label":"$string:entry_MainAbility",
+				"type":"page",
+				"launchType":"standard",
+			}
+		],
+		"distro":{
+			"moduleType":"entry",
+			"installationFree":false,
+			"deliveryWithInstall":true,
+			"moduleName":"entry"
+		},
+		"package":"com.example.api6",
+		"name":".MyApplication",
+		"js":[
+			{
+				"pages":[
+					"pages/index/index",
+					"pages/page/page"
+				],
+				"name":"default",
+				"window":{
+					"designWidth":720,
+					"autoDesignWidth":true
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,10 @@
+FROM python:3.7
+RUN apt update  && apt install -y libgl1-mesa-glx &&mkdir /app&&mkdir -p /app/uploads
+COPY src /app/src
+COPY resources /app/resources
+COPY requirements.txt /app/requirements.txt
+COPY .env /app/.env
+RUN pip install -r /app/requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+WORKDIR /app
+CMD ["python3", "src/main/main.py"]

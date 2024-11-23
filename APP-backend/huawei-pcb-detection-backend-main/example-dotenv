@@ -1,0 +1,18 @@
+export HUAWEICLOUD_SDK_AK=""
+export HUAWEICLOUD_SDK_SK=""
+export ONLINE_SERVICE_URL=""
+export IOT_SERVICE_URL=""
+export USER_PASSWORD="" 
+export USER_NAME=""
+export PROJECT_NAME=""
+export PROJECT_ID=""
+export DOMAIN_NAME=""
+export TOKEN_TARGET_URL=""
+export MODEL_PATH=""
+
+#database
+export DB_HOST=""
+export DB_PORT=""
+export DB_USER=""
+export DB_PASSWORD=""
+export DB_NAME=""

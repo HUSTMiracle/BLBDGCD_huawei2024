@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.title {
+    font-size: 38px;
+    text-align: center;
+    width: 100%;
+    margin: 10px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.icon {
+    width:30px;
+    height:30px;
+}
+
+.specificImage {
+    padding: 0px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.popup {
+    background-color: rgb(81, 171, 195);
+}
+.popup text {
+    font-size: 15px;
+}
+
+.chart {
+    padding: 15px 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart .rainbow {
+    width: 100%;
+    height: 100%;
+
+}
+
+.chart .detail {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrollable-container {
+    width: 100%;
+
+    overflow-y: auto; /* 启用垂直滚动 */
+
+}
+
+.scrollable-image {
+    width: 100%;
+    height: 100%; /* 保持图片的纵横比 */
+}
+
+.show {
+    display: none;
+}

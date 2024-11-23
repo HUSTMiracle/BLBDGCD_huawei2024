@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=db
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    expose:
+      - 5432
+
+  app:
+    # build the image from the Dockerfile in the current directory
+    build:
+      context: .
+      dockerfile: Dockerfile-compose
+    ports:
+      - "5001:5001"
+      - "5002:5002"
+    volumes:
+      - ./src:/app/src:ro
+      - ./resources:/app/resources:ro
+      - ./.env:/app/.env:ro
+      - ./uploads:/app/uploads
+    depends_on:
+      - postgres
+    deploy:
+      resources:
+          limits:
+              memory: 8G
+          reservations:
+              memory: 1G
+    restart: always
+  rtsp:
+    image: aler9/rtsp-simple-server
+    ports:
+      - "8554:8554"
+      - "8888:8888"

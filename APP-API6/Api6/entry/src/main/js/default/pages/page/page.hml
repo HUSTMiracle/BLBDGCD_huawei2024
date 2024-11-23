@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="header">
+        <div>
+            <image class="icon" src="/common/images/back.png" onclick="goBack"></image>
+        </div>
+        <div>
+
+            <image class="icon" src="/common/images/more.png" id="imageDetail"></image>
+            <popup class="popup" target="imageDetail" placement="bottom" arrowoffset="100px" @visibilitychange="visibilityChange">
+                <text> {{ detail_id }} </text>
+            </popup>
+        </div>
+    </div>
+
+    <div class="specificImage">
+        <div class="scrollable-container" onclick="switch">
+            <image class="scrollable-image" src="{{ imageUrl }}"></image>
+        </div>
+        <div class="chart {{theShow}}">
+            <chart
+                class="rainbow"
+                id="rainbow"
+                type="rainbow"
+                segments="{{ detectionClasses }}"
+                effects="true"
+                animationduration="5000"
+            >
+            </chart>
+            <div class="detail">
+                <text>异常总数：{{ totalCount }}</text>
+                <select @change="onDetailChange">
+                    <option for="{{ detectionClasses }}" value="{{ $item.value }}">
+                        {{ $item.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
