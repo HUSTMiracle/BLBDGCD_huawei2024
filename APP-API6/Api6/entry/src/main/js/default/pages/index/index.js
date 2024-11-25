@@ -3,6 +3,9 @@ import http from '@ohos.net.http';
 import fileIO from '@ohos.fileio';
 import router from '@system.router';
 import webSocket from '@ohos.net.webSocket';
+import animator from '@ohos.animator';
+import featureAbility from '@ohos.ability.featureAbility'
+import File from '@system.file';
 
 export default {
     data: {
@@ -11,11 +14,19 @@ export default {
         MyBlue: "#44cef6",
         src: "",
         lastImage: "",
+
+        recentImages: [],
+        selectedImage: '',
+        currentIndex: 0,
+        fullScreen: false,
+        imageScale: 1,
+        imageOpacity: 1,
+
         urls: {
-            imageDetection: "http://10.12.168.10:5001/api/v1/inference_binary",
-            getAllHistories: "http://10.12.168.10:5001/api/v1/get_all_histories",
-            getLastImage: "http://10.12.168.10:5001/images/",
-            camera: 'ws://10.12.168.10:5002/66b8276ed8c5af5f58f200d3_PCB_ON_BELT'
+            imageDetection: "http://10.12.168.52:5001/api/v1/inference_binary",
+            getAllHistories: "http://10.12.168.52:5001/api/v1/get_all_histories",
+            getLastImage: "http://10.12.168.52:5001/images/",
+            camera: 'ws://10.12.168.52:5002/66b8276ed8c5af5f58f200d3_PCB_ON_BELT'
         },
         pages: {
             Page0: { color: "SelectedColor", icon: ["hidden", ""] },
@@ -25,35 +36,44 @@ export default {
         historyList: [],
         page : 1,
         limit : 50,
-        date : 20240824,
+        date : 20240905,
         imgNum: 1,
         percent: 0,
         timer: null,
         isLoading: false,
-        dateValue: '2024-08-25',
+        dateValue: '2024-11-11',
         dialogShow: 0,
-        imageUrl0: ''
+        realTimeImageUrl: '',
     },
 
     // 进度条加载进度循环控制
     onInit() {
-
         this.startLoading();
-
-
-
     },
+    onReady() {
+        this.animatePageEntry();
+    },
+
+    animatePageEntry() {
+        animator.createAnimator({
+            duration: 1000,
+            easing: 'ease-out',
+            delay: 0,
+            fill: 'forwards',
+            iterations: 1,
+            direction: 'normal',
+            begin: 0,
+            end: 800.0
+        }).play();
+    },
+
     onShow() {
-        console.log("123");
         this.theTimer();
     },
-    theTimer(){
-        console.log("1515151515115");
+    theTimer() {
         this.flawsDetection();
-
     },
     startLoading() {
-        console.log("234");
         const incrementProgress = () => {
             this.percent = (this.percent + 1) % 101; // 增加百分比，到100后重置为0
             this.timer = setTimeout(incrementProgress, 50); // 每50毫秒更新一次
@@ -117,7 +137,6 @@ export default {
             setTimeout(() => this.progressLoading(), 50);
         }
     },
-
     // 摄像头
     cameraError() {
         prompt.showToast({
@@ -158,6 +177,7 @@ export default {
                 console.info('-------------success------' + path_homepage);
 
                 const fileName = imagePath.split('/').pop();
+
                 const urlWithQuery = _this.urls.imageDetection + '?filename=' + encodeURIComponent(fileName);
                 let httpRequest = http.createHttp();
                 let promise = httpRequest.request(
@@ -175,9 +195,22 @@ export default {
                 promise.then((data) => {
                     console.info('Result:' + data.result);
                     console.info('code:' + data.responseCode);
+
                     const parseRes = JSON.parse(data.result);
                     const lastImageID = parseRes.filename;
-                    _this.lastImage = _this.urls.getLastImage + lastImageID;
+                    _this.lastImage = _this.urls.getLastImage + lastImageID
+
+                    // 更新最近图片数组
+                    _this.recentImages.unshift(_this.lastImage);
+                    if (_this.recentImages.length > 5) {
+                        _this.recentImages.pop();
+                    }
+
+                    // 如果新增图片后总数超过3张，将当前索引设置为0以显示最新的图片组
+                    if (_this.recentImages.length > 3) {
+                        _this.currentIndex = 0;
+                    }
+
                     // 加载完成，隐藏进度条
                     _this.isLoading = false;
                     _this.progressStopLoading();
@@ -187,6 +220,26 @@ export default {
             }
         });
     },
+
+    selectImage(image, index) {
+        this.currentIndex = Math.floor(index / 3);
+        this.showFullScreen(image);
+    },
+
+    showFullScreen(image) {
+        this.selectedImage = image;
+        this.fullScreen = true;
+        this.imageScale = 1;
+        this.imageOpacity = 1;
+    },
+    closeFullScreen() {
+        this.imageScale = 0.8;
+        this.imageOpacity = 0;
+        setTimeout(() => {
+            this.fullScreen = false;
+        }, 300); // 等待动画完成
+    },
+
     change(e){
         console.log(e.value);
         this.date = e.value;
@@ -262,12 +315,12 @@ export default {
 
         ws.on('message', (err, value) => {
             const res = JSON.parse(value);
-            if (res.total_flaws_detected != this.dialogShow) {
+            if (res.total_flaws_detected !== this.dialogShow) {
                 this.$element('dialogId').show();
                 this.dialogShow = res.total_flaws_detected;
             }
-            this.imageUrl0 = "";
-            this.imageUrl0 = res.streaming_url;
+            this.realTimeImageUrl = res.streaming_url;
+            this.$element("realTimeImage").reload();
         })
 
         ws.on('close', (err, value) => {

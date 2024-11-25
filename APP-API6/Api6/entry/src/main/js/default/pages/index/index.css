@@ -1,5 +1,3 @@
-
-
 .container {
     display: flex;
     flex-direction: column;
@@ -9,7 +7,8 @@
     top: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgb(241, 243, 245);
+    background-color: #F1F3F5;
+    font-family: 'Roboto';
 }
 
 .tabButton {
@@ -29,8 +28,8 @@
 .tabBar {
     height:10%;
     display: flex;
-    justify-content: space-between;  /* 子元素均匀分布，左右有间距 */
-    align-items: center;  /* 子元素垂直居中 */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .bottomTex {
@@ -45,32 +44,44 @@
 .hidden{
     display: none;
 }
+
 #Page0 {
     width: 100%;
     height: 100%;
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 10px;
-}
-.rtsp {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-.rtsp text {
-    font-size: 25px;
+    padding: 15px;
+    background-color: #ecf0f1;
 }
 
-.rtsp image {
+.rtsp {
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.rtsp text {
+    font-size: 23px;
+}
+
+.rtsp .monitor {
     padding: 5px;
+}
+
+.rtsp .monitor image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .historyImage {
     width: 100%;
-    height: 50%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -78,17 +89,76 @@
 }
 /* lastImage 历史记录 */
 .historyImage text {
-    font-size: 25px;
+    font-size: 23px;
 }
+
 .historyImage .lastImage {
     width: 100%;
-    height: 100%;
+    height: 80%;
     padding: 10px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.historyImage .lastImage image {
+    border-radius: 10px;
+}
+
+.recentImagesContainer {
+    width: 100%;
+    height: 20%;
+    border-radius: 10px;
+    padding: 0px 10px;
+}
+
+.recentImages {
+    width: 100%;
+    height: 100%;
+}
+
+.imageGroup {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.imageGroup image {
+    width: 31%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.imageGroup image:hover {
+    transform: scale(1.05);
+}
+
+.full-screen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.full-screen-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 10px;
+}
+
 #loadingProgress {
     display: none;
     position: absolute;
@@ -97,7 +167,9 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: 40%;
+    height: 6px;
 }
+
 /* Page1 Camera */
 #Page1{
     width: 100%;
@@ -179,11 +251,12 @@
     color: whitesmoke;
 }
 .listItem{
-    border-bottom: 1px solid #DEDEDE;
     height: 70px;
     margin: 0px 10px 5px 10px;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
+    box-shadow: 1px 1px 3px 0;
+    z-index: 100;
 }
 
 .listItem .ld{
@@ -195,9 +268,18 @@
     width:100%;
     height:100%;
 }
-
+.ld .bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 50%;
+    color: white;
+    background-color: #3484ed;
+    border-radius: 25px;
+}
 .ld .listItemIndex{
-    font-size: 23px;
+    font-size: 20px;
 }
 
 .ld .imageName{
@@ -216,6 +298,7 @@
 
 .ld .errorNum{
     font-size: 23px;
+    color: #E02020;
 }
 
 
@@ -223,21 +306,26 @@
     position: absolute;
     bottom: 0%;
     width: 80%;
-    height: 250px;
+    height: 200px;
 }
-.content{
+.dialogClass .cueContent{
     width: 100%;
-    height: 250px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #e8ebec;
-    border-radius: 20px;
+    border-radius: 27px;
 }
 
-.content .newPcb {
-    margin-bottom: 20px;
+.cueContent .newPcb {
+    margin-bottom: 22px;
+    font-size: 23px;
+}
+
+.cueContent .newDialog {
+    font-size: 21px;
 }
 @keyframes buttonSelectedColor{
     from {

@@ -5,13 +5,13 @@ apply plugin: 'com.huawei.ohos.app'
 ohos {
     signingConfigs {
         debug {
-            storeFile file('C:\\Users\\DELL\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000675141909.p12')
-            storePassword '0000001B8A43B8CDA5DAE5803A03C7CA58A51AEF362E624717BABA17B2652A66283B0380D14FC16C5877D7'
+            storeFile file('C:\\Users\\Eason\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000642733946.p12')
+            storePassword '0000001B1CD4031998939922C76564A3068478957E7BB4E57A43967F04A97D9712E95D4A711EEECD51AC09'
             keyAlias = 'debugKey'
-            keyPassword '0000001B8C53CB8734899AC0751DEB90F913F591AE8645D5611CCACE5E24430D0688D7FB9BA2FEB852327D'
+            keyPassword '0000001B7DEBC54A5680F5344E20AFAC659C9203D212F76FE92F1D6FF702CB03F511ABA9901D0FC0741B07'
             signAlg = 'SHA256withECDSA'
-            profile file('C:\\Users\\DELL\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000675141909.p7b')
-            certpath file('C:\\Users\\DELL\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000675141909.cer')
+            profile file('C:\\Users\\Eason\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000642733946.p7b')
+            certpath file('C:\\Users\\Eason\\.ohos\\config\\auto_debug_Api6_com.example.api6_30086000642733946.cer')
         }
     }
     compileSdkVersion 6
