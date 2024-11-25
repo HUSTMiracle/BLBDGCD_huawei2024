@@ -2,26 +2,37 @@
     <tabs>
         <tab-content class="tabContent">
             <div class="Page0" id="Page0">
-                <div class="rtsp">
-                    <text>实时传送带监控</text>
-<!--                    <div class="canvas">-->
-<!--&lt;!&ndash;                        <web src="https://www.baidu.com/"></web>&ndash;&gt;-->
-<!--                    </div>-->
-<!--                    <video src="http://10.12.168.10:5001/hls/camera.m3u8" autoplay="true" controls="true" @error="onError"></video>-->
-                    <image src="{{ imageUrl0 }}"></image>
-                </div>
                 <div class="historyImage">
-                    <text>检测结果</text>
+                    <text>历史速览</text>
                     <div class="lastImage">
-                        <image src="{{ lastImage }}"></image>
+                        <image src="{{ lastImage }}" id="lastImage" style="display: {{ isLoading ? 'none' : 'block' }}"></image>
                         <progress id="loadingProgress" type="horizontal" percent="{{percent}}" style="display: {{ isLoading ? 'block' : 'none' }}"></progress>
                     </div>
+                    <div class="recentImagesContainer">
+                        <swiper class="recentImages" index="{{ currentIndex }}" loop="false">
+                            <div class="imageGroup" for="{{ [0, 1] }}">
+                                <image for="{{ recentImages.slice($item * 3, ($item + 1) * 3) }}"
+                                       src="{{ $item }}"
+                                       id="image-{{ $idx }}"
+                                       onclick="selectImage($item, $idx)">
+                                </image>
+                            </div>
+                        </swiper>
+                    </div>
                     <dialog class="dialogClass" dragable="true" id="dialogId">
-                        <div class="content">
+                        <div class="cueContent">
                             <text class="newPcb">检测到新的异常pcb板!</text>
-                            <text>当前异常数：{{ dialogShow }}</text>
+                            <text class="newDialog">当前异常数：{{ dialogShow }}</text>
                         </div>
                     </dialog>
+                </div>
+                <div class="full-screen-container" if="{{ fullScreen }}">
+                    <image src="{{ selectedImage }}"
+                           id="full-screen-image"
+                           class="full-screen-image"
+                           style="transform: scale({{ imageScale }}); opacity: {{ imageOpacity }}"
+                           onclick="closeFullScreen">
+                    </image>
                 </div>
             </div>
             <div class="Page1" id="Page1">
@@ -38,7 +49,7 @@
             <div class="Page2" id="Page2">
                 <div id="Page2Title">
                     <div id="Page2TitleText">
-                        <text >检测时间</text>
+                        <text>检测时间</text>
                         <image src="/common/images/ic_public_input_search.svg" class="input-search"></image>
                         <picker
                             type="date"
@@ -58,7 +69,7 @@
                         <list-item class="listItem" for="{{ historyList }}" onclick="imageDetail({{ $item.imageName }})">
                             <div class="ld">
                                 <div>
-                                    <text class="listItemIndex">{{ $item.number }}</text>
+                                    <div class="bg"><text class="listItemIndex">{{ $item.number }}</text></div>
                                     <text class="imageName">{{ $item.imageName }}</text>
                                 </div>
                                 <div class="right">

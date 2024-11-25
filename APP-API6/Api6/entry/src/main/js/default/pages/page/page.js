@@ -5,14 +5,14 @@ export default {
     data: {
         imageId: "",
         imageUrl: "",
-        getOneImageHistory: "http://10.12.168.10:5001/api/v1/get_one_history",
+        getOneImageHistory: "http://10.12.168.52:5001/api/v1/get_one_history",
         detail_id: "",
         detectionClasses: {},
         totalCount: 0,
         theShow: "",
     },
     onInit() {
-        let before = "http://10.12.168.10:5001/images/";
+        let before = "http://10.12.168.52:5001/images/";
         this.imageId = globalThis.value && globalThis.value.data;
         this.imageUrl = before + this.imageId;
     },
