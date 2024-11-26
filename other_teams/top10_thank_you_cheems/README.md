@@ -86,6 +86,7 @@ $$
 其中 $logits$ 是模型的输出分数, $label$ 是真实标签, $weight$ 是动态权重, $freq$ 是频率, $L$ 是损失函数, $l_n$ 是第 $n$ 个样本的损失函数, $label_{n}$ 是第 $n$ 个样本的真实标签, $logits_{n,l}$ 是第 $n$ 个样本的第 $l$ 个类别的预测分数.
 
 推荐使用 $freq$ 为:
+
 $$
 freq = 1 + \frac{1}{\sqrt{\frac{1}{n}\sum_{i=1}^{n} (x_i - \bar{x})^2 + \epsilon}}
 $$
