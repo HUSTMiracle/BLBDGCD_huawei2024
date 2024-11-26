@@ -1,4 +1,4 @@
-#YOLOV9_NPU 训练
+# YOLOV9_NPU 训练
 ## notebook 配置  
 
 ### 服务器配置
