@@ -1,1 +1,0 @@
-upload file test for iot_device_demo!

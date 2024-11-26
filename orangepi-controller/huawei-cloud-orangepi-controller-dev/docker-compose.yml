@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  rtsp:
-    image: aler9/rtsp-simple-server
-    ports:
-      - "8554:8554"
-      - "8000:8000"
-      - "8001:8001"
