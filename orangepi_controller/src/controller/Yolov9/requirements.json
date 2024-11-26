@@ -1,0 +1,89 @@
+{
+    "packages": [
+        {
+            "package_name": "matplotlib",
+            "package_version": "3.2.2",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "numpy",
+            "package_version": "1.18.5",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "opencv-python",
+            "package_version": "4.1.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "Pillow",
+            "package_version": "7.1.2",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "PyYAML",
+            "package_version": "5.3.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "requests",
+            "package_version": "2.23.0",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "scipy",
+            "package_version": "1.4.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "thop",
+            "package_version": "0.1.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "torch",
+            "package_version": "1.7.0",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "torchvision",
+            "package_version": "0.8.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "tqdm",
+            "package_version": "4.64.0",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "tensorboard",
+            "package_version": "2.4.1",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "pandas",
+            "package_version": "1.1.4",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "seaborn",
+            "package_version": "0.11.0",
+            "restraint": "ATLEAST"
+        },
+        {
+            "package_name": "onnxruntime",
+            "package_version": "1.14.1",
+            "restraint": "EXACT"
+        },
+        {
+            "package_name": "onnx",
+            "package_version": "1.14.1",
+            "restraint": "EXACT"
+        },
+        {
+            "package_name": "albumentations",
+            "package_version": "1.0.3",
+            "restraint": "ATLEAST"
+        }
+    ]
+}
