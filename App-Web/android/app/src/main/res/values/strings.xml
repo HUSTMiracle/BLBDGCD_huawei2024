@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">PCB Detection</string>
+    <string name="title_activity_main">PCB Detection</string>
+    <string name="package_name">com.pcbdetection.app</string>
+    <string name="custom_url_scheme">com.pcbdetection.app</string>
+</resources>
